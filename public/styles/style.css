@@ -1,0 +1,84 @@
+body {
+    /* background-image: url("./background.jpeg"); */
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+
+div.container1 form.basic {
+    display:inline;
+}
+
+div.container1  {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    border: 1px solid black;
+    background-color: lightblue;
+}
+
+button {
+    background-color: #555555; 
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+input[type=submit]{
+    background-color: #555555; 
+    border: 2px solid #2f05eb;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 150px;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+input[type=submit]:hover {
+    background-color: white;
+    color: black;
+}
+
+
+table {
+    border-collapse: collapse;
+    border: 1;
+    empty-cells: hide;
+}
+
+table th{
+    text-align: center;
+    border: 1px solid black;
+    background-color: #c1d4a2;
+    color: #4513b8;
+    padding: 4px 10px 4px 10px;
+}
+
+table td{
+    border: 1px solid #e3e3e3;
+    padding: 4px 8px;
+}
+
+table tr:nth-child(odd) td{
+    background-color: #b2afe9;
+}
+
+table tr:nth-child(even) td{
+    background-color: #9395ad;
+}
+
+input[type=number]{
+    width: 120px;
+}

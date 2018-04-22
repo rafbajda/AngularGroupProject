@@ -1,0 +1,75 @@
+$darkblue: #0066CC;
+
+body {
+   background-image: url("../background.jpeg"); 
+     
+   .navbar{
+       background-color: $darkblue;
+       
+   }   
+   #accordion{
+    padding: 10px;
+    .btn {
+        background-color: $darkblue;
+     }
+     #collapseOne{
+        background-color: lighten(desaturate($darkblue, 10%), 10%);
+     }
+   }
+
+   .table{   
+       width:98.5%;
+       margin:auto;
+       text-align:center;
+       .table-primary {
+            background-color: $darkblue;  
+            vertical-align:middle;    
+            #LessonCell{
+                vertical-align:middle;    
+            }
+            #DeleteLessonCell{
+                vertical-align:middle;
+                &:hover{
+                background-color: #DF0808
+                
+                }
+                .btn    {
+                    color: #191818;
+                    &:hover{
+                        color:darken (lighten(#191818, 10%), 20%);
+                    }
+                }                              
+            }     
+       }       
+       #DayCell{
+           max-width: 70px;
+           #DayName{       
+            
+            writing-mode:tb-rl; 
+            font-size:36px;
+            font-weight:bold;
+           }
+        }
+   }
+   .formContainer{
+     
+       .card{
+        width:80%;
+        margin: auto;
+        margin-top:10px;
+
+        &{
+            padding:10px;
+        }
+       }
+
+   }
+   #kolidacjaMSG{
+    text-align:center;
+    font-size:24px;
+    font-weight: bolder;
+    .kolidacjaTekst{
+        vertical-align:middle; 
+    }
+   }   
+}

@@ -1,0 +1,29 @@
+<div ng-init="$ctrl2.getLessons()" ng-controller="mainController as $ctrl2">
+
+    <table class ="table">
+        <thead class="bg-primary thead-light">
+            <tr class="table-primary">
+                <td></td>
+                <td></td>
+                <th scope = "col">Grupa 1</th>
+                <th scope = "col">Grupa 2</th>
+                <th scope = "col">Grupa 3</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="d in dni">
+
+            <tr>
+                <th scope="row" class = "bg-primary">{{d}}</th>
+            </tr>
+            <tr ng-repeat="i in godziny">
+                <td>{{i}}-{{i}}:45</td>
+                <td ng-repeat="g in grupy" ng-if="lekcja_szuk($ctrl.lekcje,d,i-1,g).dur!=2" rowspan="{{lekcja_szuk($ctrl.lekcje,d,i,g).dur}}">
+
+                    <wyswietl1 ng-if="lekcja_szuk($ctrl.lekcje,d,i,g)" lekcja="lekcja_szuk($ctrl.lekcje,d,i,g)" on-delete="$ctrl.deleteLesson(lekcja_szuk($ctrl.lekcje,d,i,g)); $ctrl2.reloadData()"
+                        on-update="$ctrl.updateLessonValue(lekcja_szuk($ctrl.lekcje,d,i,g), prop, value)"></wyswietl1>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

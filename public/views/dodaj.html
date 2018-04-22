@@ -1,0 +1,85 @@
+<div  ng-init="$ctrl.getLessons()" ng-controller="addController as $ctrl3">
+
+<div class = "formContainer">
+    <div class = "card">
+        <form name="myForm">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01">Nazwa przedmiotu</label>
+                        <input id = "#NazwaPrzedmiotu" name="NazwaPrzedmiotu" type="text" ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.NazwaPrzedmiotu.$invalid]" placeholder="Nazwa przedmiotu"  ng-model="$ctrl3.newlesson.name"  ng-pattern="/^[a-zA-z]*$/" required>
+                        <div class="valid-feedback">
+                        Wypełniono poprawnie!
+                        </div>
+                        <div class="invalid-feedback">
+                        Nieprawidłowa nazwa przedmiotu
+                        </div>
+                    </div>
+                    <div class="col-auto my-1">
+                            <label class="mr-sm-2" for="inlineFormCustomSelect" >Grupa</label>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name = "WyborGrupy" ng-model="$ctrl3.newlesson.grupa" ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborGrupy.$invalid]" required>
+                            <option ng-value="1">Pierwsza</option>
+                            <option ng-value="2">Druga</option>
+                            <option ng-value="3">Trzecia</option>                          
+                            </select>                        
+                    </div>             
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                            <label class="mr-sm-2" for="inlineFormCustomSelect" >Dzień tygodnia</label>
+                            <select class="custom-select mr-sm-2" name="WyborDnia" id="inlineFormCustomSelect" ng-model="$ctrl3.newlesson.day" ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborDnia.$invalid]" required>
+                            <option ng-value="1">Poniedziałek</option>
+                            <option ng-value="2">Wtorek</option>
+                            <option ng-value="3">Środa</option>
+                            <option ng-value="4">Czwartek</option>
+                            <option ng-vvalue="5">Piątek</option>
+                            </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                            <label class="mr-sm-2" for="inlineFormCustomSelect">Godzina rozpoczęcia</label>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name = "WyborGodziny" ng-model="$ctrl3.newlesson.start" ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborGodziny.$invalid]" required>
+                                <option ng-value="8" selected>8:15</option>
+                                <option ng-value="9">9:15</option>
+                                <option ng-value="10">10:15</option>
+                                <option ng-value="11">11:15</option>
+                                <option ng-value="12">12:15</option>
+                                <option ng-value="13">13:15</option>
+                            </select>                       
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Czas trwania zajęć</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" ng-value="1"  ng-model="$ctrl3.newlesson.dur">
+                                    <label class="form-check-label" for="exampleRadios1">
+                                    1 godzina
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" ng-value="2" ng-model="$ctrl3.newlesson.dur">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                    2 godziny
+                                    </label>
+                                </div>           
+                                <div class="msg" ng-if="!$ctrl3.newlesson.dur">
+                                        <small style="color:red;">
+                                            Zaznacz czas trwania zajęć.
+                                        </small>
+                                    </div>              
+                    </div>
+                    <div class="col-md-2 mb-3">
+                            <button class="btn btn-primary btn-lg" type="submit" ng-disabled="myForm.$invalid || kolidacja($ctrl.lessons,$ctrl3.newlesson.day,$ctrl3.newlesson.start,$ctrl3.newlesson.grupa,$ctrl3.newlesson.dur)"
+                            ng-click="$ctrl3.newlesson.ind = nowyindex($ctrl.lessons); $ctrl3.addLesson($ctrl3.newlesson);">Dodaj zajęcia</button>                                      
+                    </div>
+                    <div id = "kolidacjaMSG" class="col-md-6 mb-3 alert alert-danger" role="alert" ng-if="kolidacja($ctrl.lessons,$ctrl3.newlesson.day,$ctrl3.newlesson.start,$ctrl3.newlesson.grupa,$ctrl3.newlesson.dur)">
+                               <p class = "kolidacjaTekst"> Kolidacja zajęć!!!</p>
+                    </div>
+                        
+                    
+               
+                </div>                
+            </form>
+    </div>  
+</div>
+</div>
+</div>

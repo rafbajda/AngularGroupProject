@@ -1,0 +1,75 @@
+<div ng-init="$ctrl.getLessons()">
+
+<div id="accordion">
+
+        <div class="card">
+                <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                    <div class="" id="headingOne">
+                        <h5 class="mb-0">                       
+                        Filtruj tabelę
+                        </h5>
+                    </div>
+                </button>
+
+          <div id="collapseOne" class="collapse hidden" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">            
+
+
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="DropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dzień
+                                          </button>
+                                            <div id = "DayDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            
+                                                <a class="dropdown-item" href="" ng-click="chosenDay=[1,2,3,4,5]">Wszystkie</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [1]">Poniedziałek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [2]">Wtorek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [3]">Środa</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [4]">Czwartek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [5]">Piątek</a>
+                                            </div>
+                            </div>
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="GroupDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Grupa
+                                          </button>
+                                            <div id = "GroupDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup=[1,2,3]">Wszystkie</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [1]">Pierwsza</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [2]">Druga</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [3]">Trzecia</a>
+                                            </div>
+                            </div>
+                                  
+            </div>
+          </div>
+        </div>
+</div>
+
+
+<table class = "table">
+    <thead class = "table-bordered">
+            <tr>
+                    <td></td>
+                    <td></td>                 
+                    <th scope="col" class = "table-primary" ng-repeat="x in grupy | oneDay:chosenGroup">Grupa {{x}}</th>
+                    
+                </tr>
+    </thead>
+    <tbody class = "table-bordered" ng-repeat="d in dni | oneDay:chosenDay">
+            
+            <tr>
+               
+                <th id = "DayCell" class = "table-primary" scope="row" rowspan="8"><span id = "DayName">{{$ctrl.getDayName(d)}}</span></th>
+            </tr>
+        <tr class = "table-primary" ng-repeat="i in godziny">
+            <td scope="row" >{{i}}-{{i}}:45</td>
+            <td id = "LessonCell" scope="row" ng-repeat="g in grupy | oneDay:chosenGroup" ng-if="lekcja($ctrl.lessons,d,i-1,g).dur!=2" rowspan="{{lekcja($ctrl.lessons,d,i,g).dur}}"><h4>{{lekcja($ctrl.lessons,d,i,g).name}}</h4></td>
+        </tr>
+    </tbody>
+</table>
+
+
+</div>
