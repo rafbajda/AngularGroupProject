@@ -36,4 +36,5 @@ app.controller('addController', ['$scope', '$http', function addController($scop
         console.log('Added w konsoli przegladarki');
       });
     };
+    
   }]);

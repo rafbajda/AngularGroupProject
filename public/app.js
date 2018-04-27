@@ -1,6 +1,6 @@
 
 
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['ngRoute','ngAnimate']);
 //FILTRY
 //Uzywany przy dodawaniu lekcji aby z listy były tylko unikalne wartosci
 app.filter('unique', function() {
@@ -64,7 +64,11 @@ app.component('editableField', {
   }
 });
 
-
+app.directive('displayLecturers', function() {
+  return {
+    templateUrl: 'views/wyswietlProwadzacych.html'
+  };
+});
 
 
 // KONFIGURACJA ROUTING
@@ -80,6 +84,10 @@ app.config(function ($routeProvider) {
     .when('/edytuj', {
       controller: 'mainController',
       templateUrl: 'views/edytuj.html'
+    })
+    .when('/prowadzacy', {
+      controller: 'lecturerController',
+      templateUrl: 'views/prowadzacy.html'
     })
     .when('/usun', {
       controller: 'mainController',

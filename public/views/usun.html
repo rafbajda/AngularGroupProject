@@ -1,6 +1,6 @@
-<div  ng-init="$ctrl.getLessons()">
+<div class = "DeleteViewBlocked" ng-init="$ctrl.getLessons()">
 
-        <div id="accordion">
+        <div id="accordion" ng-show = "$ctrl.temp">
 
                 <div class="card">
                         <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -46,9 +46,22 @@
                     </div>
                   </div>
                 </div>
-        </div>     
-       
-        <table class = "table">
+        </div>  
+
+        <div id = "DeleteApprover" class="card text-center" ng-show = "!$ctrl.temp">
+            <div class="card-header">
+              Czy jesteś zdecydowany, aby usunąć te zajęcia?
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{$ctrl.LessonToDelete.name}}</h5>
+              <p class="card-text">{{$ctrl.DeleteInformation}}</p>
+              <a href="#!/usun" class="btn btn-danger" ng-click="$ctrl.deleteHandler()">Usuń</a>
+              <a href="#!/usun" class="btn btn-info" ng-click="$ctrl.temp = !ctrl.temp">Cofnij</a>
+            </div>
+           
+          </div>
+
+        <table id = "DeleteTable" class = "table" ng-show = "$ctrl.temp">
                 <thead class = "table-bordered">
                         <tr>
                                 <td></td>
@@ -70,10 +83,10 @@
                                 ng-repeat="g in grupy | oneDay:chosenGroup" 
                                 ng-if="lekcja($ctrl.lessons,d,i-1,g).dur!=2" 
                                 rowspan="{{lekcja($ctrl.lessons,d,i,g).dur}}">
-                                
                             <a href="" class="btn input-block-level" 
-                            ng-click="$ctrl.deleteLesson(lekcja($ctrl.lessons,d,i,g))">
-                                
+                             ng-click="$ctrl.clickHandler(lekcja($ctrl.lessons,d,i,g))"
+                            
+                             >
                                     <h4>{{lekcja($ctrl.lessons,d,i,g).name}}</h4>
                             </a>
                                     

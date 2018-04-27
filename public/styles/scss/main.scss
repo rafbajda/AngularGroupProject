@@ -1,12 +1,38 @@
 $darkblue: #0066CC;
 
+@keyframes slide {
+    0% {
+      left: 0;
+    }
+    20% {
+      left: 20%;
+    }
+    40% {
+      left: 40%;
+    }
+    60% {
+      left: 60%;
+    }
+    80% {
+      left: 80%;
+    }
+    100% {
+      left: 100%;
+      overflow: hidden;
+      opacity: 0;
+      display: none;
+      visibility: hidden;
+    }
+  }
+
 body {
    background-image: url("../background.jpeg"); 
      
    .navbar{
        background-color: $darkblue;
        
-   }   
+   } 
+     
    #accordion{
     padding: 10px;
     .btn {
@@ -16,6 +42,74 @@ body {
         background-color: lighten(desaturate($darkblue, 10%), 10%);
      }
    }
+  
+   #LecturersGallery{ 
+    // .custom-file-control.selected:lang(en)::after {
+    //     content: "" !important;
+    //   }
+   #AddButtonRow{   
+       margin:auto;       
+   }
+    .AddFooter{
+       float:right;
+       padding:20px;
+       .btn{
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 36px;
+        line-height: 1.42;
+        border-radius: 80px;
+        border-width:2px;
+        border-color: $darkblue;
+       }
+
+    }
+       #DeleteLectApprover{
+           
+            .card-body{
+                margin: auto;
+                
+                #DLImg{
+                    width:100%;
+                }
+                #DLbuttons{
+                    margin-top:5px                    
+                }
+            }
+          
+
+       }   
+
+    #CardLecturer{
+        background-color: $darkblue;
+    .card-img-top {
+        height: calc(100% - 15px);
+        margin-bottom: 15px;
+        height: 25vw;
+        object-fit: cover;
+        padding:0px;
+       }
+
+    .col-sm-4{
+        #btn-panel{
+            
+            i{
+                margin-top:5px;
+            }
+        }
+        
+    }
+}
+
+
+    
+    &{
+        padding:50px;
+       }      
+   }
+
 
    .table{   
        width:98.5%;
@@ -39,7 +133,21 @@ body {
                         color:darken (lighten(#191818, 10%), 20%);
                     }
                 }                              
-            }     
+            }
+            #EditLessonCell{
+                vertical-align:middle;
+                &:hover{
+                background-color: green;
+                
+                }
+                .btn    {
+                    color: #191818;
+                    &:hover{
+                        color:darken (lighten(#191818, 10%), 20%);
+                    }
+                }                              
+            }           
+
        }       
        #DayCell{
            max-width: 70px;
@@ -51,6 +159,23 @@ body {
            }
         }
    }
+   #Editor{
+    width:98.5%;
+    margin:auto;
+    margin-top:5px;
+    text-align:center;
+    #EditButtons{
+        margin-top:5px;
+    }
+}
+  #DeleteApprover{
+    width:98.5%;
+    margin:auto;
+    margin-top:5px;
+    text-align:center;    
+  }
+  
+  
    .formContainer{
      
        .card{
@@ -71,5 +196,5 @@ body {
     .kolidacjaTekst{
         vertical-align:middle; 
     }
-   }   
+   }    
 }

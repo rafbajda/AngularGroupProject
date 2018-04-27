@@ -6,7 +6,7 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="validationServer01">Nazwa przedmiotu</label>
-                        <input id = "#NazwaPrzedmiotu" name="NazwaPrzedmiotu" type="text" ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.NazwaPrzedmiotu.$invalid]" placeholder="Nazwa przedmiotu"  ng-model="$ctrl3.newlesson.name"  ng-pattern="/^[a-zA-z]*$/" required>
+                        <input id = "#NazwaPrzedmiotu" name="NazwaPrzedmiotu" type="text" ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.NazwaPrzedmiotu.$invalid]" placeholder="Nazwa przedmiotu"  ng-model="$ctrl3.newlesson.name"  ng-pattern="/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*$/" required>
                         <div class="valid-feedback">
                         Wypełniono poprawnie!
                         </div>
@@ -26,13 +26,17 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                             <label class="mr-sm-2" for="inlineFormCustomSelect" >Dzień tygodnia</label>
-                            <select class="custom-select mr-sm-2" name="WyborDnia" id="inlineFormCustomSelect" ng-model="$ctrl3.newlesson.day" ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborDnia.$invalid]" required>
+                            <select class="custom-select mr-sm-2" 
+                            name="WyborDnia" id="inlineFormCustomSelect" 
+                            ng-model="$ctrl3.newlesson.day" 
+                            ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborDnia.$invalid]" 
+                            required>
                             <option ng-value="1">Poniedziałek</option>
                             <option ng-value="2">Wtorek</option>
                             <option ng-value="3">Środa</option>
                             <option ng-value="4">Czwartek</option>
                             <option ng-vvalue="5">Piątek</option>
-                            </select>
+                            </select>                            
                     </div>
                     <div class="col-md-4 mb-3">
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Godzina rozpoczęcia</label>

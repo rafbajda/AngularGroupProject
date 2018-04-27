@@ -1,0 +1,8 @@
+[
+{"name":"Rafał","surname":"Bajda", "title": "dr hab.", "lections":["Matematyka"],"mail":"raf.baj1997@gmail.com","id":1},
+{"name":"Kamil","surname":"Szczerbiński","title": "mgr", "lections":["Fizyka"],"mail":"kamosz69@o2.pl","id":2},
+{"name":"Janusz","surname":"Kowalski", "title": "prof. nadzw.","lections":["Informatyka", "Religia"],"mail":"Januszex@onet.pl","id":3},
+{"name":"Janusz","surname":"Kowalski", "title": "prof. nadzw.","lections":["Informatyka", "Religia"],"mail":"Januszex@onet.pl","id":4},
+{"name":"Janusz","surname":"Kowalski", "title": "prof. nadzw.","lections":["Informatyka", "Religia"],"mail":"Januszex@onet.pl","id":5}
+
+]

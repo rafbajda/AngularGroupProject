@@ -1,6 +1,11 @@
 //GLOWNY KONTROLLER (WYSWIETLANIE)
 app.controller('mainController', ['$scope', '$http','$route', function mainController($scope, $http, $route) {
     var ctrl = this;
+
+    ctrl.temp = true;
+    ctrl.editShow = false;
+    ctrl.LessonToDelete = {};
+    ctrl.DeleteInformation = "";
     ctrl.lessons = [];
     $scope.dni = [1,2,3,4,5];
     $scope.godziny = [8, 9, 10, 11, 12, 13, 14];
@@ -10,6 +15,8 @@ app.controller('mainController', ['$scope', '$http','$route', function mainContr
       if (temp != -1) return array[temp];
       return null;
     };    
+
+   
 
     ctrl.getDayName = function(day){
       switch(day){
@@ -33,10 +40,42 @@ app.controller('mainController', ['$scope', '$http','$route', function mainContr
       $("#DropdownMenuButton").html(selText)
     });
 
-    // $("#DeleteLessonCell").click(function(){
-    //  console.log('works')
-    //   // $("#GroupDropdownMenuButton").html(selText)
-    // });
+    ctrl.editHandler = function(lekcja){
+      console.log('jestem')
+      ctrl.LessonToDelete = lekcja;
+      $ctrl.editShow = !$ctrl.editShow
+
+    }
+ 
+    ctrl.clickHandler = function(lekcja){
+      ctrl.LessonToDelete = lekcja;
+      let tempDay = lekcja.day;
+      switch(tempDay){
+          case 1:
+        tempDay = "poniedziałek"
+        break;
+          case 2:
+        tempDay = "wtorek"
+        break;
+          case 3:
+        tempDay = "środa"
+        break;
+          case 4:
+        tempDay = "czwartek" 
+        break;       
+          default:
+        tempDay = "piątek"
+        break;
+      }
+      let duration = lekcja.start + ':15-' + (lekcja.start + lekcja.dur) + ':15';
+      ctrl.DeleteInformation = lekcja.grupa + ' grupa, ' + tempDay + ' ' + duration;
+      ctrl.temp = !ctrl.temp;    
+      
+    }
+    ctrl.deleteHandler = function(){
+      ctrl.deleteLesson(ctrl.LessonToDelete)
+      ctrl.temp = !ctrl.temp;
+    }
 
     $("#GroupDropdown a").click(function(){
       let selText = $(this).text();   

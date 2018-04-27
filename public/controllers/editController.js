@@ -1,7 +1,6 @@
 // FUNKCJA DO EDITABLE FIELD Z WYKŁADU
 app.controller('editController', function editController($scope, $element, $attrs) {
     var ctrl = this;
-    ctrl.editMode = false;
   
     ctrl.kolizja = function (array, index, prop, value) {
       var t = array.findIndex((lesson) => lesson.ind == index);
@@ -28,7 +27,7 @@ app.controller('editController', function editController($scope, $element, $attr
       if (temp != -1 || temp2 != -1 ||temp3!=-1) return true;
       return false;
     };
-  
+   
     ctrl.handleModeChange = function() {
       if (ctrl.editMode) {
         ctrl.onUpdate({value: ctrl.fieldValue});

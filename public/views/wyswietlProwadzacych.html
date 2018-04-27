@@ -1,0 +1,191 @@
+<div id = "LecturersGallery" ng-init="$ctrl.getLecturers(); $ctrl.getImages()" ng-controller="lecturerController as $ctrl">
+   
+    <div class = "formContainer" ng-show = "$ctrl.showAdd">
+        <div class = "card">
+            <form name="myForm" 
+            action = "/uploadImg" 
+            method = "POST" 
+            enctype = "multipart/form-data" >
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="nameInput">Imię</label>
+                      <input type="text" 
+                      name="nameInput"
+                      ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.nameInput.$invalid]" 
+                      ng-model="$ctrl.newLecturer.name"
+                      id="nameInput" 
+                      placeholder="imie" 
+                      ng-pattern="/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]*$/"
+                       required>
+                       <div class="valid-feedback">
+                          Wypełniono poprawnie!
+                          </div>
+                          <div class="invalid-feedback">
+                              Proszę uzupełnić poprawnie.
+                          </div>
+                    </div>  
+                    <div class="col-md-6 mb-3">
+                      <label for="surnameInput">Nazwisko</label>
+                      <input type="text" 
+                      name="surnameInput"
+                      ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.surnameInput.$invalid]" 
+                      ng-model="$ctrl.newLecturer.surname"
+                      id="surnameInput" 
+                      placeholder="nazwisko" 
+                      ng-pattern= "/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]*$/"
+                       required>
+                       <div class="valid-feedback">
+                          Wypełniono poprawnie!
+                          </div>
+                          <div class="invalid-feedback">
+                          Proszę uzupełnić poprawnie.
+                          </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="emailInput">e-mail</label>
+                      <input 
+                      type="email" 
+                      id="emailInput" 
+                      ng-model="$ctrl.newLecturer.mail"
+                      name = "emailInput"
+                      ng-pattern = "/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"                      
+                      placeholder="email@example.com"
+                      ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.emailInput.$invalid]" 
+                      required>
+                      <div class="valid-feedback">
+                          Wypełniono poprawnie!
+                          </div>
+                          <div class="invalid-feedback">
+                          Proszę uzupełnić poprawnie.
+                          </div>
+                    </div>
+                      
+                    <div class="col-md-6 mb-3">
+                        <label class="mr-sm-2" for="titleInput" >Tytuł naukowy</label>
+                        <select class="custom-select mr-sm-2"  
+                        id="titleInput" 
+                        name = "titleInput" 
+                        ng-model="$ctrl.newLecturer.title" 
+                        ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.titleInput.$invalid]" 
+                        required>
+                        <option value="lic.">licencjat</option>
+                        <option value="inż.">inżynier</option>
+                        <option value="mgr.">magister</option>
+                        <option value="dr">doktor</option> 
+                        <option value="dr hab.">doktor habilitowany</option>   
+                        <option value="prof.">profesor</option>                            
+                        </select> 
+                        <div class="valid-feedback">
+                            Wypełniono poprawnie!
+                            </div>
+                            <div class="invalid-feedback">
+                            Proszę uzupełnić.
+                            </div>                       
+                </div>   
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label for="lessonsInput">Lekcje</label>
+                      <input type="text" 
+                      name="lessonsInput"
+                      ng-class="{true: 'form-control is-valid', false: 'form-control is-invalid'}[!myForm.lessonsInput.$invalid]" 
+                      ng-model="$ctrl.tempLessons"
+                      id="lessonsInput" 
+                      placeholder="lekcje po przecinku" 
+                      ng-pattern= "/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ,\s]*$/"
+                       required> 
+                       <div class="valid-feedback">
+                          Wypełniono poprawnie!
+                          </div>
+                          <div class="invalid-feedback">
+                          Proszę uzupełnić poprawnie.
+                          </div>                   
+                      </div>             
+                </div>
+                <input type="hidden" name="idInput" ng-value="$ctrl.newLecturer.id">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="photoInputRow">Zdjęcie</label>
+                      <div id="photoInputRow"class="custom-file">
+                        
+                        <input id="photo" name = "photo" accept="image/*" type="file" class="custom-file-input">
+                        <label for="photo" class="custom-file-label">Zdjęcie nie jest obowiązkowe</label>
+                      </div>
+                    </div>                   
+                    <div id = "AddButtonRow" class="col-md-6 mb-3">
+                        <button 
+                        class="btn btn-primary btn-lg" 
+                        type="submit" 
+                        ng-disabled="myForm.$invalid"
+                        ng-click="$ctrl.AddButtonHandler()">Dodaj</button> 
+                    </div>
+                </div>
+              </form>  
+        </div>  
+    </div>
+
+  <div id = "DeleteLectApprover" class="card text-center" ng-show = "$ctrl.deleteShow">
+        <div class="card-header">
+          Czy jesteś zdecydowany, aby usunąć tego prowadzącego?
+        </div>
+        <div class="card-body">
+          <div class="row justify-content-md-center">
+            <h5 class="card-title">{{$ctrl.getFullTitle($ctrl.currentLecturer)}}</h5>
+          </div>
+          <div class="row">
+          <img id = "DLImg" class="rounded" src={{$ctrl.getImgPath($ctrl.currentLecturer)}} alt="Card image cap" onerror="this.onerror=null;this.src='../uploads/default.png';">
+         </div>
+          <div id = "DLbuttons" class = "row justify-content-md-center">
+            <a href="" ng-click="$ctrl.deleteHandler($ctrl.currentLecturer)" class="btn btn-danger" >Usuń</a>
+            <a href="" ng-click="$ctrl.deleteShow = !$ctrl.deleteShow" class="btn btn-info">Cofnij</a>
+        </div>
+        </div>       
+      </div>
+
+<div ng-show = "!$ctrl.deleteShow && !$ctrl.showAdd" class="card-columns">
+        <div id = "CardLecturer" class="card text-white" ng-repeat = "lect in lecturers">
+                <img class="card-img-top" src={{$ctrl.getImgPath(lect)}} alt="Card image cap" onerror="this.onerror=null;this.src='../uploads/default.png';">
+                <div class="card-body">
+                  <h4 class="card-title font-weight-bold">{{lect.name + ' ' + lect.surname}}</h4>
+                  <p class="card-text">
+                    Przedmioty: 
+                    <span> {{$ctrl.writeLessons(lect.lections)}}</span> 
+
+                  </p>
+                </div>
+                <div id = "cardFooter" class="card-footer">
+                  <div class = "row">
+                    <div class="col-sm-8 text-white">
+                      <label><small>e-mail: </small></label>
+                      <p class = "font-weight-bold"> {{lect.mail}} </p>
+                    </div>
+
+                    <div class = "col-sm-4">
+                      <div id = "btn-panel">
+                      <button type="button" class="btn btn-outline-success btn-sm"><i class="material-icons">&#xE3C9;</i></button>
+                      <button type="button" class="btn btn-outline-danger btn-sm"
+                      ng-click = "$ctrl.deleteLecturerHandler(lect)"
+                      ><i class="material-icons">delete_forever</i></button>
+                    </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>  
+
+                  
+</div>
+
+<div class = "AddFooter" ng-show = "!$ctrl.showAdd && !$ctrl.deleteShow">
+  
+      <button ng-click = "$ctrl.showAdd = !$ctrl.showAdd" class="btn btn-primary btn-xl">
+          <i class="material-icons">add</i>
+      </button> 
+ 
+</div>     
+
+
+</div>

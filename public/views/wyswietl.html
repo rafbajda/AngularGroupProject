@@ -1,27 +1,101 @@
 <div ng-init="$ctrl2.getLessons()" ng-controller="mainController as $ctrl2">
 
-    <table class ="table">
-        <thead class="bg-primary thead-light">
-            <tr class="table-primary">
+
+    <div id="accordion" ng-show = "!$ctrl.editShow">
+
+        <div class="card">
+                <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                    <div class="" id="headingOne">
+                        <h5 class="mb-0">                       
+                        Filtruj tabelę
+                        </h5>
+                    </div>
+                </button>
+
+          <div id="collapseOne" class="collapse hidden" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">            
+
+
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="DropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dzień
+                                          </button>
+                                            <div id = "DayDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            
+                                                <a class="dropdown-item" href="" ng-click="chosenDay=[1,2,3,4,5]">Wszystkie</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [1]">Poniedziałek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [2]">Wtorek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [3]">Środa</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [4]">Czwartek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [5]">Piątek</a>
+                                            </div>
+                            </div>
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="GroupDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Grupa
+                                          </button>
+                                            <div id = "GroupDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup=[1,2,3]">Wszystkie</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [1]">Pierwsza</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [2]">Druga</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [3]">Trzecia</a>
+                                            </div>
+                            </div>
+                                  
+            </div>
+          </div>
+        </div>
+</div>
+
+
+<div id = "Editor" class="card text-center" ng-show = "$ctrl.editShow">
+    <div class="card-header">
+      <h2>Edytuj zajęcia</h2>
+    </div>
+    <div class="card-body">
+
+            
+                    <wyswietl1
+                    lekcja="$ctrl.LessonToDelete" 
+                    on-update="$ctrl.updateLessonValue($ctrl.LessonToDelete, prop, value)"                    
+                    >
+                    
+                </wyswietl1> 
+
+    </div>
+   
+  </div>
+
+    <table class ="table" ng-show = "!$ctrl.editShow">
+        <thead class="table-bordered">
+            <tr>
                 <td></td>
-                <td></td>
-                <th scope = "col">Grupa 1</th>
-                <th scope = "col">Grupa 2</th>
-                <th scope = "col">Grupa 3</th>
+                <td></td>        
+                <th scope="col" class = "table-primary" ng-repeat="x in grupy | oneDay:chosenGroup">Grupa {{x}}</th>
+
             </tr>
         </thead>
-        <tbody ng-repeat="d in dni">
+        <tbody class = "table-bordered" ng-repeat="d in dni | oneDay:chosenDay">
 
             <tr>
-                <th scope="row" class = "bg-primary">{{d}}</th>
+                <th id = "DayCell" class = "table-primary" scope="row" rowspan="8"><span id = "DayName">{{$ctrl2.getDayName(d)}}</span></th>
             </tr>
-            <tr ng-repeat="i in godziny">
+            <tr class = "table-primary" ng-repeat="i in godziny">
                 <td>{{i}}-{{i}}:45</td>
-                <td ng-repeat="g in grupy" ng-if="lekcja_szuk($ctrl.lekcje,d,i-1,g).dur!=2" rowspan="{{lekcja_szuk($ctrl.lekcje,d,i,g).dur}}">
+                <td 
+                ng-attr-id="{{lekcja_szuk($ctrl.lekcje,d,i,g) ? 'EditLessonCell': 'LessonCell'}}" 
+                ng-repeat="g in grupy | oneDay:chosenGroup" 
+                ng-if="lekcja_szuk($ctrl.lekcje,d,i-1,g).dur!=2" 
+               
+                rowspan="{{lekcja_szuk($ctrl.lekcje,d,i,g).dur}}">
 
-                    <wyswietl1 ng-if="lekcja_szuk($ctrl.lekcje,d,i,g)" lekcja="lekcja_szuk($ctrl.lekcje,d,i,g)" on-delete="$ctrl.deleteLesson(lekcja_szuk($ctrl.lekcje,d,i,g)); $ctrl2.reloadData()"
-                        on-update="$ctrl.updateLessonValue(lekcja_szuk($ctrl.lekcje,d,i,g), prop, value)"></wyswietl1>
-
+                <a href="" class="btn input-block-level" 
+                     ng-click = "$ctrl.editShow = !$ctrl.editShow; $ctrl.LessonToDelete = lekcja_szuk($ctrl.lekcje,d,i,g);"                          
+                             >
+                                    <h4>{{lekcja_szuk($ctrl.lekcje,d,i,g).name}}</h4>
+                            </a>
                 </td>
             </tr>
         </tbody>

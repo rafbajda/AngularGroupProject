@@ -1,13 +1,13 @@
-<span ng-show="!edyt" >{{$ctrl.lekcja.name}}</span>
-<div ng-show="edyt">
-<editable-field  field-value="$ctrl.lekcja.name" field-type="name" on-update="$ctrl.update('name', value)"></editable-field>
-<editable-field index="$ctrl.lekcja.ind"  field-value="$ctrl.lekcja.day" field-type="day" on-update="$ctrl.update('day', value)"></editable-field>
-<editable-field index="$ctrl.lekcja.ind" field-value="$ctrl.lekcja.start" field-type="start" on-update="$ctrl.update('start', value)"></editable-field>
-<editable-field index="$ctrl.lekcja.ind" field-value="$ctrl.lekcja.dur" field-type="dur" on-update="$ctrl.update('dur', value)"></editable-field>
-<editable-field index="$ctrl.lekcja.ind" field-value="$ctrl.lekcja.grupa" field-type="grupa" on-update="$ctrl.update('grupa', value)"></editable-field> 
 
-
-<button ng-click="$ctrl.delete()">Delete</button>
-</div>
-<br>
-<button ng-click="edytowanie()"><span ng-show="!edyt">zacznij</span><span ng-show="edyt">zakoncz</span></button>
+<ul class="list-group list-group-flush">
+        <li class="list-group-item"><editable-field  field-value="$ctrl.lekcja.name" field-type="name" on-update="$ctrl.update('name', value)"></editable-field>
+        </li>
+        <li class="list-group-item"><editable-field index="$ctrl.lekcja.ind"  field-value="$ctrl.lekcja.day" field-type="day" on-update="$ctrl.update('day', value)"></editable-field>
+        </li>
+        <li class="list-group-item"><editable-field index="$ctrl.lekcja.ind" field-value="$ctrl.lekcja.start" field-type="start" on-update="$ctrl.update('start', value)"></editable-field>
+        </li>
+        <li class="list-group-item"><editable-field index="$ctrl.lekcja.ind" field-value="$ctrl.lekcja.dur" field-type="dur" on-update="$ctrl.update('dur', value)"></editable-field>
+        </li>
+        <li class="list-group-item"><editable-field index="$ctrl.lekcja.ind" field-value="$ctrl.lekcja.grupa" field-type="grupa" on-update="$ctrl.update('grupa', value)"></editable-field> 
+        </li>
+</ul>

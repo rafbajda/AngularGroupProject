@@ -2,13 +2,14 @@
 //KONTROLLER DO EDYCJI I USUWANIA LEKCJI
 app.controller('modifyController', ['$scope', '$http', function modifyController($scope, $http) {
     var ctrl = this;
-  
+    ctrl.editMode = false;
+
     $scope.lekcja_szuk = function (array, d, s, gr) {
       var temp = array.findIndex((lesson) => lesson.day == d && lesson.start == s && lesson.grupa == gr);
       if (temp != -1) return array[temp];
       return null;
     };
-      
+
     ctrl.update = function(prop, value) {
       ctrl.onUpdate({lekcja: ctrl.lekcja, prop: prop, value: value});
   
