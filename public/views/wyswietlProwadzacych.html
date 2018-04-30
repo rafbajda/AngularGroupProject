@@ -1,5 +1,23 @@
 <div id = "LecturersGallery" ng-init="$ctrl.getLecturers(); $ctrl.getImages()" ng-controller="lecturerController as $ctrl">
    
+ 
+
+
+    <div class="container" ng-show = "!$ctrl.showAdd">
+      <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div id="imaginary_container"> 
+                    <div class="input-group stylish-input-group">
+                      <input ng-model="searchPerson" type="text" class="form-control" id="SearchFilter" placeholder="Search">
+                      <span class="input-group-addon">
+                        <i class="material-icons">search</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+
     <div class = "formContainer" ng-show = "$ctrl.showAdd">
         <div class = "card">
             <form name="myForm" 
@@ -114,13 +132,19 @@
                         <label for="photo" class="custom-file-label">Zdjęcie nie jest obowiązkowe</label>
                       </div>
                     </div>                   
-                    <div id = "AddButtonRow" class="col-md-6 mb-3">
+                    <div id = "AddButtonRow" class="col-md-5 mb-3">
                         <button 
                         class="btn btn-primary btn-lg" 
                         type="submit" 
                         ng-disabled="myForm.$invalid"
                         ng-click="$ctrl.AddButtonHandler()">Dodaj</button> 
                     </div>
+                    <div id = "BackButtonRow" class="col-md-1 mb-3">
+                      <button 
+                      class="btn btn-info" 
+                      type="submit" 
+                      ng-click="$ctrl.showAdd = !$ctrl.showAdd">Cofnij</button> 
+                  </div>
                 </div>
               </form>  
         </div>  
@@ -144,8 +168,8 @@
         </div>       
       </div>
 
-<div ng-show = "!$ctrl.deleteShow && !$ctrl.showAdd" class="card-columns">
-        <div id = "CardLecturer" class="card text-white" ng-repeat = "lect in lecturers">
+<div ng-show = "!$ctrl.deleteShow && !$ctrl.showAdd && !$ctrl.editShow" class="card-columns">
+        <div id = "CardLecturer" class="card text-white" ng-repeat = "lect in lecturers| filter:searchPerson">
                 <img class="card-img-top" src={{$ctrl.getImgPath(lect)}} alt="Card image cap" onerror="this.onerror=null;this.src='../uploads/default.png';">
                 <div class="card-body">
                   <h4 class="card-title font-weight-bold">{{lect.name + ' ' + lect.surname}}</h4>
@@ -164,7 +188,9 @@
 
                     <div class = "col-sm-4">
                       <div id = "btn-panel">
-                      <button type="button" class="btn btn-outline-success btn-sm"><i class="material-icons">&#xE3C9;</i></button>
+                      <!-- <button type="button" class="btn btn-outline-success btn-sm"
+                      ng-click = "$ctrl.editLecturerHandler(lect)"
+                      ><i class="material-icons">&#xE3C9;</i></button> -->
                       <button type="button" class="btn btn-outline-danger btn-sm"
                       ng-click = "$ctrl.deleteLecturerHandler(lect)"
                       ><i class="material-icons">delete_forever</i></button>
@@ -179,7 +205,7 @@
                   
 </div>
 
-<div class = "AddFooter" ng-show = "!$ctrl.showAdd && !$ctrl.deleteShow">
+<div class = "AddFooter" ng-show = "!$ctrl.showAdd && !$ctrl.deleteShow && !$ctrl.editShow">
   
       <button ng-click = "$ctrl.showAdd = !$ctrl.showAdd" class="btn btn-primary btn-xl">
           <i class="material-icons">add</i>

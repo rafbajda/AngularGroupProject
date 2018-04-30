@@ -1,52 +1,70 @@
-<div class = "DeleteViewBlocked" ng-init="$ctrl.getLessons()">
+<div class = "DeleteViewBlocked" ng-init="$ctrl.getLessons(); $ctrl.getLecturers();">
+    <div id="accordion" ng-show = "$ctrl.temp">
 
-        <div id="accordion" ng-show = "$ctrl.temp">
+        <div class="card">
+                <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 
-                <div class="card">
-                        <button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        
-                            <div class="" id="headingOne">
-                                <h5 class="mb-0">                       
-                                Filtruj tabelę
-                                </h5>
-                            </div>
-                        </button>
-        
-                  <div id="collapseOne" class="collapse hidden" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">            
-        
-        
-                                    <div class="btn-group">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="DropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Dzień
-                                                  </button>
-                                                    <div id = "DayDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    
-                                                        <a class="dropdown-item" href="" ng-click="chosenDay=[1,2,3,4,5]">Wszystkie</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenDay = [1]">Poniedziałek</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenDay = [2]">Wtorek</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenDay = [3]">Środa</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenDay = [4]">Czwartek</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenDay = [5]">Piątek</a>
-                                                    </div>
-                                    </div>
-                                    <div class="btn-group">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="GroupDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Grupa
-                                                  </button>
-                                                    <div id = "GroupDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    
-                                                        <a class="dropdown-item" href="" ng-click="chosenGroup=[1,2,3]">Wszystkie</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenGroup = [1]">Pierwsza</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenGroup = [2]">Druga</a>
-                                                        <a class="dropdown-item" href="" ng-click="chosenGroup = [3]">Trzecia</a>
-                                                    </div>
-                                    </div>
-                                          
+                    <div class="" id="headingOne">
+                        <h5 class="mb-0">                       
+                        Filtruj tabelę
+                        </h5>
                     </div>
-                  </div>
-                </div>
-        </div>  
+                </button>
+
+          <div id="collapseOne" class="collapse hidden" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">            
+
+
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="DropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Dzień
+                                          </button>
+                                            <div id = "DayDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            
+                                                <a class="dropdown-item" href="" ng-click="chosenDay=[1,2,3,4,5]">Wszystkie</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [1]">Poniedziałek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [2]">Wtorek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [3]">Środa</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [4]">Czwartek</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenDay = [5]">Piątek</a>
+                                            </div>
+                            </div>
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="GroupDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Grupa
+                                          </button>
+                                            <div id = "GroupDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup=[1,2,3]">Wszystkie</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [1]">Pierwsza</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [2]">Druga</a>
+                                                <a class="dropdown-item" href="" ng-click="chosenGroup = [3]">Trzecia</a>
+                                            </div>
+                            </div>
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="LectDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Prowadzący
+                                          </button>
+                                            <div id = "LectDropdown" 
+                                            class="dropdown-menu" 
+                                            aria-labelledby="dropdownMenuButton"
+                                            
+                                            >
+                                            <a class="dropdown-item" 
+                                            ng-click = "$ctrl.updateChosenLect(0)"
+                                            href=""> Wszyscy</a>
+
+                                                <a class="dropdown-item" href=""
+                                                ng-click = "$ctrl.updateChosenLect(lect.id)"                                                
+                                                ng-repeat="lect in $ctrl.AllLecturers" >{{lect.fullTitle}}</a>
+                                             
+                                            </div>
+                            </div>
+                                  
+            </div>
+          </div>
+        </div>
+</div>
 
         <div id = "DeleteApprover" class="card text-center" ng-show = "!$ctrl.temp">
             <div class="card-header">
@@ -88,8 +106,11 @@
                             
                              >
                                     <h4>{{lekcja($ctrl.lessons,d,i,g).name}}</h4>
-                            </a>
-                                    
+                                    <p>{{$ctrl.getLecturerName(lekcja($ctrl.lessons | oneLect:chosenLect,d,i,g).Lid)}}</p>
+                                </a>
+                                <!-- <div class="overlay">
+                                    <i class="material-icons">delete_forever</i>
+                                  </div> -->
                             </td>
                     </tr>
                 </tbody>

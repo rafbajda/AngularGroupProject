@@ -7,17 +7,64 @@ app.controller('mainController', ['$scope', '$http','$route', function mainContr
     ctrl.LessonToDelete = {};
     ctrl.DeleteInformation = "";
     ctrl.lessons = [];
+    ctrl.AllLecturers = [];
+    $scope.lecturers = [];
+    $scope.chosenLect;
     $scope.dni = [1,2,3,4,5];
     $scope.godziny = [8, 9, 10, 11, 12, 13, 14];
     $scope.grupy = [1, 2, 3];
+
     $scope.lekcja = function (array, d, s, gr) {
       var temp = array.findIndex((lesson) => lesson.day == d && lesson.start == s && lesson.grupa == gr);
       if (temp != -1) return array[temp];
       return null;
-    };    
+    };   
 
+  ctrl.updateChosenLect = function(id){
+   $scope.chosenLect = id;
+  }
+  ctrl.getAllLecturers = function(lect){
+      console.log($scope.lecturers)
+      ctrl.AllLecturers = [];
+      $scope.lecturers.map(lect => {
+        ctrl.AllLecturers.push(
+          {
+          fullTitle: lect.title + ' ' + lect.name + ' ' + lect.surname,
+          id: lect.id
+          }
+        );
+      })
+    }
    
 
+    ctrl.getLecturers = function () {
+      console.log('pobieram wykladowcow')
+      $http.get('/api/lecturers').then(function (response) {
+        $scope.lecturers = response.data;
+        ctrl.getAllLecturers();
+      });
+      
+    };
+
+    $('#carousel1').carousel({
+      interval: 2300
+    })
+    $('#carousel2').carousel({
+      interval: 3100
+    })
+
+    $(function() {
+      $('.scroll-down').click (function() {
+        var temp = $('#footer').offset().top;
+        if(temp){
+          $('html, body').animate({scrollTop: temp }, 'slow');
+          return false;
+        }
+      
+      });
+    });
+  
+  
     ctrl.getDayName = function(day){
       switch(day){
         case 1:
@@ -32,7 +79,19 @@ app.controller('mainController', ['$scope', '$http','$route', function mainContr
           return "piątek"
       }
     }
-    
+
+    $("#GroupDropdown a").click(function(){
+      let selText = $(this).text();   
+      console.log(selText)
+      $("#GroupDropdownMenuButton").html(selText)
+    });
+
+    $("#LectDropdown a").click(function(){
+      let selText = $(this).text();    
+            
+      $("#LectDropdownMenuButton").html(selText)
+    });
+
 
     $("#DayDropdown a").click(function(){
       let selText = $(this).text();    
@@ -77,12 +136,7 @@ app.controller('mainController', ['$scope', '$http','$route', function mainContr
       ctrl.temp = !ctrl.temp;
     }
 
-    $("#GroupDropdown a").click(function(){
-      let selText = $(this).text();   
-      console.log(selText)
-      
-      $("#GroupDropdownMenuButton").html(selText)
-    });
+    
 
   ctrl.reloadData = function(){
     $route.reload();
@@ -103,15 +157,16 @@ app.controller('mainController', ['$scope', '$http','$route', function mainContr
         console.log('Pobrano lekcje w konsoli przegladarki');
       });
     };
-      
-    // ctrl.DeleteHandler = function(){
-    //   console.log('xd');
-    // }
-  
-    // ctrl.delete = function() {
-    //     ctrl.onDelete({lekcja: ctrl.lekcja});
-    //   };
-      
+     
+    ctrl.getLecturerName = function (id) {
+      let temp;
+      $scope.lecturers.map(lect => {
+        if(id == lect.id) temp = lect.title + ' ' + lect.name + ' ' + lect.surname;
+      })
+      if(temp) {
+        return temp
+      } else return ''
+    }
 
     
     ctrl.deleteLesson = function (lesson) {

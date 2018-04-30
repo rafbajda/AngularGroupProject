@@ -2,20 +2,26 @@
 // KONTROLLER DO DODAWANIA LEKCJI
 app.controller('addController', ['$scope', '$http', function addController($scope, $http) {
     var ctrl = this;
-    $scope.showMessage = function() {
-      // $scope.dodano = true;
-      
-      
-      console.log(ctrl.newlesson)
-  };
-  
+    
+    $("#AddButton").click(function() {
+      $(".sa-success").addClass("hide");
+      setTimeout(function() {
+        $(".sa-success").removeClass("hide");
+      }, 10);
+      setTimeout(function() {
+       ctrl.succesAnimation = false;
+      }, 30)
+    });
+  ctrl.succesAnimation = false;
+
     ctrl.newlesson = {
       name: '',
       day: null,
       start: null,
       dur: null,
       grupa: null,
-      ind: null
+      ind: null,
+      Lid: null
     };
   
    $scope.wart=function(){

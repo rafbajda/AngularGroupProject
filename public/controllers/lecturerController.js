@@ -2,7 +2,8 @@
 app.controller('lecturerController', ['$scope', '$http', function lecturerController($scope, $http) {
     var ctrl = this;
     $scope.lecturers = [];
-    $scope.AllImages = null;
+    $scope.AllImages = [];
+    ctrl.editShow = false;
     ctrl.deleteShow = false;
     ctrl.showAdd = false;
     ctrl.currentLecturer = {};
@@ -17,10 +18,12 @@ app.controller('lecturerController', ['$scope', '$http', function lecturerContro
       id: null
     }
 
-    ctrl.errorHandler = function(){
-      alert('nie udalo sie zaladowac obrazka')
-    }
     
+    
+    ctrl.editLecturerHandler = function(lect){
+      ctrl.editShow = !ctrl.editShow;
+      ctrl.currentLecturer = lect;
+    }
 
     ctrl.writeLessons = function(arr){
       let counter = 1;
@@ -124,9 +127,10 @@ app.controller('lecturerController', ['$scope', '$http', function lecturerContro
     ctrl.getLecturers = function () {
       $http.get('/api/lecturers').then(function (response) {
         $scope.lecturers = response.data;
-        console.log(ctrl.lecturers);
       });
     };
+
+    
     ctrl.getImages = function(){
       $http.get('/api/getAllImages').then(function (response) {
         $scope.AllImages = response.data;
@@ -137,17 +141,15 @@ app.controller('lecturerController', ['$scope', '$http', function lecturerContro
  
 
     ctrl.getImgPath = function(lect){
-      console.log($scope.AllImages) ;
-
+      const ImgDir = "../uploads/";
       let name = lect.name + '_' + lect.surname + '_' + lect.id;
-      if($scope.AllImages !== undefined){
-        $scope.AllImage.map(str => {
-          let ext = str.substring(str.indexOf('.'), str.length);
-          console.log('ext to: ' + ext);
-          let tmp = str.substring(0, str.indexOf('.'));
-          console.log('tmp to: ' + tmp);
+      let ext,tmp,path;
+        $scope.AllImages.map(str => {
+           ext = str.substring(str.indexOf('.'), str.length);
+           tmp = str.substring(0, str.indexOf('.'));
+          if(name == tmp) path = ImgDir + tmp + ext;
         })
-
-      }
+      if(path) return path;
+      else return ImgDir + 'default.png';
     }
   }]);

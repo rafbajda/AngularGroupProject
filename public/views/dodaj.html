@@ -1,4 +1,4 @@
-<div  ng-init="$ctrl.getLessons()" ng-controller="addController as $ctrl3">
+<div  ng-init="$ctrl.getLessons(); $ctrl.getLecturers();" ng-controller="addController as $ctrl3">
 
 <div class = "formContainer">
     <div class = "card">
@@ -14,14 +14,24 @@
                         Nieprawidłowa nazwa przedmiotu
                         </div>
                     </div>
-                    <div class="col-auto my-1">
+                    <div class="col-md-4 my-1">
                             <label class="mr-sm-2" for="inlineFormCustomSelect" >Grupa</label>
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name = "WyborGrupy" ng-model="$ctrl3.newlesson.grupa" ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborGrupy.$invalid]" required>
                             <option ng-value="1">Pierwsza</option>
                             <option ng-value="2">Druga</option>
                             <option ng-value="3">Trzecia</option>                          
                             </select>                        
-                    </div>             
+                    </div>
+                    <div id = "SuccesCont" class="col-md-2 my-1" ng-show = "$ctrl3.succesAnimation">
+                    <div  class="check_mark" >
+                        <div class="sa-icon sa-success animate">
+                          <span class="sa-line sa-tip animateSuccessTip"></span>
+                          <span class="sa-line sa-long animateSuccessLong"></span>
+                          <div class="sa-placeholder"></div>
+                          <div class="sa-fix"></div>
+                        </div>
+                      </div> 
+                    </div>            
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
@@ -71,14 +81,24 @@
                                         </small>
                                     </div>              
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Prowadzący</label>
+                        <select class="custom-select mr-sm-2" 
+                        id="inlineFormCustomSelect" 
+                        name = "WyborProwadzacego" ng-model="$ctrl3.newlesson.Lid" 
+                        ng-class="{true: 'custom-select mr-sm-2 is-valid', false: 'custom-select mr-sm-2 is-invalid'}[!myForm.WyborProwadzacego.$invalid]" required>
+                            <option ng-repeat = "lect in $ctrl.AllLecturers" ng-value="lect.id">{{lect.fullTitle}}</option>                       
+                        </select>                       
+                </div>
                     <div class="col-md-2 mb-3">
-                            <button class="btn btn-primary btn-lg" type="submit" ng-disabled="myForm.$invalid || kolidacja($ctrl.lessons,$ctrl3.newlesson.day,$ctrl3.newlesson.start,$ctrl3.newlesson.grupa,$ctrl3.newlesson.dur)"
-                            ng-click="$ctrl3.newlesson.ind = nowyindex($ctrl.lessons); $ctrl3.addLesson($ctrl3.newlesson);">Dodaj zajęcia</button>                                      
+                            <button id = "AddButton" class="btn btn-primary btn-lg" type="submit" ng-disabled="myForm.$invalid || kolidacja($ctrl.lessons,$ctrl3.newlesson.day,$ctrl3.newlesson.start,$ctrl3.newlesson.grupa,$ctrl3.newlesson.dur)"
+                            ng-click="$ctrl3.newlesson.ind = nowyindex($ctrl.lessons); $ctrl3.addLesson($ctrl3.newlesson); $ctrl3.succesAnimation = true">Dodaj zajęcia</button>                                      
                     </div>
+                    
                     <div id = "kolidacjaMSG" class="col-md-6 mb-3 alert alert-danger" role="alert" ng-if="kolidacja($ctrl.lessons,$ctrl3.newlesson.day,$ctrl3.newlesson.start,$ctrl3.newlesson.grupa,$ctrl3.newlesson.dur)">
                                <p class = "kolidacjaTekst"> Kolidacja zajęć!!!</p>
                     </div>
-                        
+                  
                     
                
                 </div>                

@@ -7,8 +7,10 @@
       <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='name'" ng-switch-when="true" type="text" ng-model="$ctrl.fieldValue" ng-pattern="/^[a-zA-z]*$/" required>
       <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='day'" ng-switch-when="true" type="number" ng-model="$ctrl.fieldValue" min="1" max="5" required>
       <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='start'" ng-switch-when="true" type="number" ng-model="$ctrl.fieldValue" min="8" max="14" required>
-      <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='dur'" ng-switch-when="true" type="number" ng-model="$ctrl.fieldValue" min="1" max="2" required>
+      <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='dur'" ng-switch-when="true" type="number" ng-model="$ctrl.fieldValue" min="1" max="2" required>   
       <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='grupa'" ng-switch-when="true" type="number" ng-model="$ctrl.fieldValue" min="1" max="3" required>
+      <input id = "#editInput" class="form-control" ng-if="$ctrl.fieldType=='Lid'" ng-switch-when="true" type="number" ng-model="$ctrl.fieldValue" min="1" required>
+
    <div id = "EditButtons">
     <span ng-if="$ctrl.fieldType!='name' && !$ctrl.kolizja($ctrl9.lessons,$ctrl.index,$ctrl.fieldType,$ctrl.fieldValue) && !form1.$invalid"><button class = "btn btn-primary" ng-click="$ctrl.handleModeChange()">{{$ctrl.editMode ? 'Save' : 'Edit'}}</button></span>
     <span ng-if="$ctrl.fieldType=='name' && !form1.$invalid"><button class = "btn btn-primary" ng-click="$ctrl.handleModeChange()">{{$ctrl.editMode ? 'Save' : 'Edit'}}</button></span>

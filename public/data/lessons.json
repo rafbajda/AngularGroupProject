@@ -1,3 +1,3 @@
-[{"name":"Matematyka","day":1,"start":8,"dur":2,"grupa":1,"ind":2,"img":"../styles/background.jpeg"},
-{"name":"Fizyka","day":2,"start":9,"dur":1,"grupa":2,"ind":5,"img":""},
-{"name":"Angielski","day":2,"start":10,"dur":1,"grupa":2,"ind":7,"img":""}]
+[{"name":"Matematyka","day":1,"start":8,"dur":2,"grupa":1,"ind":2, "Lid":1},
+{"name":"Fizyka","day":2,"start":9,"dur":1,"grupa":2,"ind":5,"Lid":2},
+{"name":"Angielski","day":2,"start":10,"dur":1,"grupa":2,"ind":7,"Lid":4}]

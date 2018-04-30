@@ -29,6 +29,16 @@ app.filter('oneDay', function() {
     return filtered;
   };
 });
+app.filter('oneLect', function() {
+  return function (arr, id) {
+    if(!id)return arr;
+    var filtered = [];
+    arr.map(less => {
+      if (id == less.Lid) filtered.push(less);
+    })
+    return filtered;
+  };
+});
 
 //KOMPONENTY
 app.component('wyswietl',{
@@ -76,6 +86,10 @@ app.config(function ($routeProvider) {
   $routeProvider.when('/lekcje', {
     controller: 'mainController',
     templateUrl: 'views/lessons.html'
+  })
+  .when('/', {
+    controller: 'mainController',
+    templateUrl: 'views/main.html'
   })
     .when('/dodaj', {
       controller: 'mainController',

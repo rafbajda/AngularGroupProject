@@ -1,52 +1,348 @@
 $darkblue: #0066CC;
 
-@keyframes slide {
+  
+@-webkit-keyframes animateSuccessLong {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+@-webkit-keyframes animateSuccessTip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
+  }
+}
+@keyframes animateSuccessTip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
+  }
+}
+
+@keyframes animateSuccessLong {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+@-webkit-keyframes rotatePlaceholder {
     0% {
-      left: 0;
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
     }
-    20% {
-      left: 20%;
+    5% {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
     }
-    40% {
-      left: 40%;
-    }
-    60% {
-      left: 60%;
-    }
-    80% {
-      left: 80%;
+    12% {
+      transform: rotate(-405deg);
+      -webkit-transform: rotate(-405deg);
     }
     100% {
-      left: 100%;
-      overflow: hidden;
-      opacity: 0;
-      display: none;
-      visibility: hidden;
+      transform: rotate(-405deg);
+      -webkit-transform: rotate(-405deg);
+    }
+  }
+  @keyframes rotatePlaceholder {
+    0% {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+    5% {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+    12% {
+      transform: rotate(-405deg);
+      -webkit-transform: rotate(-405deg);
+    }
+    100% {
+      transform: rotate(-405deg);
+      -webkit-transform: rotate(-405deg);
+    }
+  }
+
+@keyframes bounce {
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+      transform: translateY(-10px);
+    }
+    60% {
+      -webkit-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
+      transform: translateY(-5px);
     }
   }
 
 body {
    background-image: url("../background.jpeg"); 
-     
-   .navbar{
-       background-color: $darkblue;
+   #globalNav{
+    border-style: solid;
+    border-width:0px 0px 1px 0px;
+    border-color:white;
+    z-index:5;        
+    background-color: $darkblue;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+
        
-   } 
+   }
+    
+
+  
+     #projectImage{
+         width:100%;
+         height: 517px;
+
+     }
+    
+     #ScrollButton{
+    .scroll-down {
+    opacity: 1;
+    -webkit-transition: all .5s ease-in 3s;
+    transition: all .5s ease-in 3s;
+    }
+    
+    .scroll-down {
+    position: absolute;
+    bottom: 33%;
+    left: 50%;
+    margin-left: -16px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #FFF;
+    background-size: 14px auto;
+    border-radius: 50%;
+    // z-index: 2;
+    -webkit-animation: bounce 2s infinite 2s;
+    animation: bounce 2s infinite 2s;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    }
+    
+    .scroll-down:before {
+        position: absolute;
+        top: calc(50% - 8px);
+        left: calc(50% - 6px);
+        transform: rotate(-45deg);
+        display: block;
+        width: 12px;
+        height: 12px;
+        content: "";
+        border: 2px solid white;
+        border-width: 0px 0 2px 2px;
+    }      
+  }
+     #featuresRow{
+        box-shadow: 0 4px 6px 0 hsla(0, 0%, 10%, 0.6);
+
+         margin-left:0;
+         margin-right:0;
+         text-align:center;
+         color:white;
+         background-color: $darkblue;
+        
+         [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+            
+          } 
+                
+                p{
+                    cursor: default;
+                    margin: 0 auto;
+                    height:60px;
+                    line-height:60px;
+                } 
+               
+            
+            .info-image {
+                height:100px;
+                width: 100%;
+            }
+        
+
+     }
      
+
+  #SlidesRow{    
+      
+    margin: 0 auto;
+    margin-top:20px;  
+    margin-bottom:20px;
+     width: 80%;
+   
+    .col-6{
+        [id*="carousel"] {
+            border:1px ridge  lighten(desaturate($darkblue, 20%), 10%);
+            box-shadow: 0 4px 6px 0 hsla(0, 0%, 10%, 0.6);
+            .carousel-inner {
+                height: 235px;
+                width:100%;
+                  img {
+                        // border:1px solid  lighten(desaturate($darkblue, 20%), 10%);
+                      
+                      width: 100%;
+                      height: 100%;
+                  }
+          
+            }
+        }
+        
+    }
+   
+
+}
+
+footer {
+    box-shadow: 0 0px 0px 1px hsla(0, 0%, 10%, 0.6);
+
+    background-color: lighten(desaturate($darkblue, 10%), 5%);
+    &.page-footer {
+      bottom: 0;
+      color: white;
+      .container-fluid {
+        width:auto;
+      }
+      .footer-copyright {
+        overflow: hidden;
+        background-color: $darkblue;
+        font-size: 11px;
+        color:white;
+      }
+      a {
+        color: white
+      }
+    }
+  }
    #accordion{
+    margin-top:10%;
+    width:30%;     
     padding: 10px;
     .btn {
+        margin-left: 0px;
         background-color: $darkblue;
      }
      #collapseOne{
         background-color: lighten(desaturate($darkblue, 10%), 10%);
      }
    }
+   
   
-   #LecturersGallery{ 
-    // .custom-file-control.selected:lang(en)::after {
-    //     content: "" !important;
-    //   }
+   #LecturersGallery{
+
+    .formContainer{
+        margin-top:10%;
+    }
+    #imaginary_container{
+        margin-top:20%; /* Don't copy this */
+        margin-bottom:10%;
+        box-shadow: 0px 4px 6px 2px hsla(0, 0%, 10%, 0.6);
+
+    }
+    .stylish-input-group .input-group-addon{
+        cursor:default;
+        width:30px;
+        // background: white !important; 
+        background-color: $darkblue;
+
+    }
+    .stylish-input-group .form-control{
+        border-right:0; 
+        border-color:#ccc;
+    }
+    .stylish-input-group i{
+        margin-top:6px;
+        margin-left: 3px;
+    }
+
    #AddButtonRow{   
        margin:auto;       
    }
@@ -83,6 +379,8 @@ body {
        }   
 
     #CardLecturer{
+        box-shadow: 0px 4px 6px 2px hsla(0, 0%, 10%, 0.6);
+
         background-color: $darkblue;
     .card-img-top {
         height: calc(100% - 15px);
@@ -94,7 +392,8 @@ body {
 
     .col-sm-4{
         #btn-panel{
-            
+            box-shadow: 0px 4px 6px 2px hsla(0, 0%, 10%, 0.6);
+            float:right;
             i{
                 margin-top:5px;
             }
@@ -111,7 +410,8 @@ body {
    }
 
 
-   .table{   
+   .table{
+       cursor:default;   
        width:98.5%;
        margin:auto;
        text-align:center;
@@ -124,8 +424,9 @@ body {
             #DeleteLessonCell{
                 vertical-align:middle;
                 &:hover{
-                background-color: #DF0808
-                
+                  opacity:1;
+                  background-color: #DF0808;
+                  transition: .5s ease;                
                 }
                 .btn    {
                     color: #191818;
@@ -137,8 +438,9 @@ body {
             #EditLessonCell{
                 vertical-align:middle;
                 &:hover{
+                opacity:1;
                 background-color: green;
-                
+                transition: .5s ease;   
                 }
                 .btn    {
                     color: #191818;
@@ -160,34 +462,36 @@ body {
         }
    }
    #Editor{
-    width:98.5%;
+    width:70%;
     margin:auto;
-    margin-top:5px;
-    text-align:center;
+    margin-top:10%;
     #EditButtons{
         margin-top:5px;
     }
 }
   #DeleteApprover{
-    width:98.5%;
+    width:30%;
     margin:auto;
-    margin-top:5px;
+    margin-top:10%;
     text-align:center;    
   }
   
   
    .formContainer{
-     
+    margin-top:10%;
        .card{
         width:80%;
         margin: auto;
-        margin-top:10px;
+        // margin-top:10px;
 
         &{
             padding:10px;
         }
        }
 
+   }
+   #AddButton{
+    margin-top:22px;
    }
    #kolidacjaMSG{
     text-align:center;
@@ -196,5 +500,154 @@ body {
     .kolidacjaTekst{
         vertical-align:middle; 
     }
-   }    
+   }
+   #SuccesCont{
+     float:right;
+    .check_mark {
+      width: 80px;
+      height: 130px;
+      margin: 0 auto;
+    }
+    
+    button {
+      cursor: pointer;
+      margin-left: 15px;
+    }
+    
+    .hide{
+      display:none;
+    }
+    
+    .sa-icon {
+      width: 80px;
+      height: 80px;
+      border: 4px solid gray;
+      -webkit-border-radius: 40px;
+      border-radius: 40px;
+      border-radius: 50%;
+      margin: 20px auto;
+      padding: 0;
+      position: relative;
+      box-sizing: content-box;
+    }
+    
+    .sa-icon.sa-success {
+      border-color: #4CAF50;
+    }
+    
+    .sa-icon.sa-success::before, .sa-icon.sa-success::after {
+      content: '';
+      -webkit-border-radius: 40px;
+      border-radius: 40px;
+      border-radius: 50%;
+      position: absolute;
+      width: 60px;
+      height: 120px;
+      background: white;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    
+    .sa-icon.sa-success::before {
+      -webkit-border-radius: 120px 0 0 120px;
+      border-radius: 120px 0 0 120px;
+      top: -7px;
+      left: -33px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-transform-origin: 60px 60px;
+      transform-origin: 60px 60px;
+    }
+    
+    .sa-icon.sa-success::after {
+      -webkit-border-radius: 0 120px 120px 0;
+      border-radius: 0 120px 120px 0;
+      top: -11px;
+      left: 30px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-transform-origin: 0px 60px;
+      transform-origin: 0px 60px;
+    }
+    
+    .sa-icon.sa-success .sa-placeholder {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(76, 175, 80, .5);
+      -webkit-border-radius: 40px;
+      border-radius: 40px;
+      border-radius: 50%;
+      box-sizing: content-box;
+      position: absolute;
+      left: -4px;
+      top: -4px;
+      z-index: 2;
+    }
+    
+    .sa-icon.sa-success .sa-fix {
+      width: 5px;
+      height: 90px;
+      background-color: white;
+      position: absolute;
+      left: 28px;
+      top: 8px;
+      z-index: 1;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+    
+    .sa-icon.sa-success.animate::after {
+      -webkit-animation: rotatePlaceholder 4.25s ease-in;
+      animation: rotatePlaceholder 4.25s ease-in;
+    }
+    
+    .sa-icon.sa-success {
+      border-color: transparent\9;
+    }
+    .sa-icon.sa-success .sa-line.sa-tip {
+      -ms-transform: rotate(45deg) \9;
+    }
+    .sa-icon.sa-success .sa-line.sa-long {
+      -ms-transform: rotate(-45deg) \9;
+    }
+    
+    .animateSuccessTip {
+      -webkit-animation: animateSuccessTip 0.75s;
+      animation: animateSuccessTip 0.75s;
+    }
+    
+    .animateSuccessLong {
+      -webkit-animation: animateSuccessLong 0.75s;
+      animation: animateSuccessLong 0.75s;
+    }
+    
+    
+    .sa-icon.sa-success .sa-line {
+      height: 5px;
+      background-color: #4CAF50;
+      display: block;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 2;
+    }
+    
+    .sa-icon.sa-success .sa-line.sa-tip {
+      width: 25px;
+      left: 14px;
+      top: 46px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    
+    .sa-icon.sa-success .sa-line.sa-long {
+      width: 47px;
+      right: 8px;
+      top: 38px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  
+   }
+   
+  
 }

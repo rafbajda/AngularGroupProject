@@ -1,4 +1,4 @@
-<div ng-init="$ctrl.getLessons()">
+<div ng-init="$ctrl.getLessons(); $ctrl.getLecturers();">
 
 <div id="accordion">
 
@@ -42,6 +42,25 @@
                                                 <a class="dropdown-item" href="" ng-click="chosenGroup = [3]">Trzecia</a>
                                             </div>
                             </div>
+                            <div class="btn-group">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="LectDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Prowadzący
+                                          </button>
+                                            <div id = "LectDropdown" 
+                                            class="dropdown-menu" 
+                                            aria-labelledby="dropdownMenuButton"
+                                            
+                                            >
+                                            <a class="dropdown-item" 
+                                            ng-click = "$ctrl.updateChosenLect(0)"
+                                            href=""> Wszyscy</a>
+
+                                                <a class="dropdown-item" href=""
+                                                ng-click = "$ctrl.updateChosenLect(lect.id)"                                                
+                                                ng-repeat="lect in $ctrl.AllLecturers" >{{lect.fullTitle}}</a>
+                                             
+                                            </div>
+                            </div>
                                   
             </div>
           </div>
@@ -66,7 +85,13 @@
             </tr>
         <tr class = "table-primary" ng-repeat="i in godziny">
             <td scope="row" >{{i}}-{{i}}:45</td>
-            <td id = "LessonCell" scope="row" ng-repeat="g in grupy | oneDay:chosenGroup" ng-if="lekcja($ctrl.lessons,d,i-1,g).dur!=2" rowspan="{{lekcja($ctrl.lessons,d,i,g).dur}}"><h4>{{lekcja($ctrl.lessons,d,i,g).name}}</h4></td>
+            <td id = "LessonCell" scope="row" 
+            ng-repeat="g in grupy | oneDay:chosenGroup" 
+            ng-if="lekcja($ctrl.lessons | oneLect:chosenLect,d,i-1,g).dur!=2" 
+            rowspan="{{lekcja($ctrl.lessons | oneLect:chosenLect,d,i,g).dur}}">
+                <h4>{{lekcja($ctrl.lessons| oneLect:chosenLect,d,i,g).name}}</h4>
+                <p>{{$ctrl.getLecturerName(lekcja($ctrl.lessons | oneLect:chosenLect,d,i,g).Lid)}}</p>
+            </td>
         </tr>
     </tbody>
 </table>
